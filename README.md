@@ -14,3 +14,10 @@ The goal of this competition is to predict the probability that someone will acc
     - Random Forest Classifiers don't return very precise probabilities, they're mostly estimates based on how the trees look in a neighborhood, so the approach is flawed for this use case
     - The main problem with RTC is how they were heavily overfitting on the training set. To counteract this, I tried lower the max_features, but that only marginally increased my score
   
+## Second Attempt:
+  Utilizing publicly available notebooks on kaggle, I first preproccessed the data with target encoding. This proved to be effective since most of the predictors were categorical. The target encoding I used was out-of-fold smoothed target encoding, which looks at the smoothed means of all the data outside the current fold. This was chosen to reduce overfitting, which has been a persistent issue. Afterwards, I utilized XGBoost to implement gradient boosted trees, which performed significantly better than random forests.
+  ### Pros:
+    - This solution achieved a score of 0.870, significantly better than the 0.792 from before
+    - Very easy to implement
+  ### Cons:
+    - Despite target encoding, overfitting seems to still be a problem
